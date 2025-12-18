@@ -48,4 +48,17 @@ abstract class TiktokAppEventsPlatform extends PlatformInterface {
   }) {
     throw UnimplementedError('logSubscription() has not been implemented.');
   }
+
+  Future<void> setUserIdentity({
+    String? externalId,
+    String? externalUserName,
+    String? email,
+    String? phoneNumber,
+  }) {
+    throw UnimplementedError('setUserIdentity() has not been implemented.');
+  }
+
+  Future<void> logout() {
+    throw UnimplementedError('logout() has not been implemented.');
+  }
 }

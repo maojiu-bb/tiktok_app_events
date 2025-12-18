@@ -12,18 +12,21 @@ class MethodChannelTiktokAppEvents extends TiktokAppEventsPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version =
+        await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
 
   @override
   Future<bool?> initSDK(TikTokConfig config) async {
-    final result = await methodChannel.invokeMethod<bool>('initSDK', config.toMap());
+    final result =
+        await methodChannel.invokeMethod<bool>('initSDK', config.toMap());
     return result;
   }
 
   @override
-  Future<void> logEvent(String eventName, {Map<String, dynamic>? properties}) async {
+  Future<void> logEvent(String eventName,
+      {Map<String, dynamic>? properties}) async {
     await methodChannel.invokeMethod<void>('logEvent', {
       'eventName': eventName,
       'properties': properties,
@@ -48,5 +51,25 @@ class MethodChannelTiktokAppEvents extends TiktokAppEventsPlatform {
       'value': value,
       'currency': currency,
     });
+  }
+
+  @override
+  Future<void> setUserIdentity({
+    String? externalId,
+    String? externalUserName,
+    String? email,
+    String? phoneNumber,
+  }) async {
+    await methodChannel.invokeMethod<void>('setUserIdentity', {
+      'externalId': externalId,
+      'externalUserName': externalUserName,
+      'email': email,
+      'phoneNumber': phoneNumber,
+    });
+  }
+
+  @override
+  Future<void> logout() async {
+    await methodChannel.invokeMethod<void>('logout');
   }
 }
